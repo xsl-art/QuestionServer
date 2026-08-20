@@ -17,7 +17,8 @@ import { UploadModule } from './upload/upload.module';
     QuestionModule,
     ConfigModule.forRoot(),
     MongooseModule.forRoot(
-      `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`,
+      process.env.MONGODB_URI ??
+        `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`,
     ),
     UserModule,
     AuthModule,

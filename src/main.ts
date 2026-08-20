@@ -10,8 +10,12 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalInterceptors(new TransformInterceptor()); //全局拦截器
   app.useGlobalFilters(new HttpExceptionFilter()); //全局异常过滤器
-  app.enableCors();
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
   app.useStaticAssets(join(process.cwd(), 'uploads'), { prefix: '/uploads' });
-  await app.listen(process.env.PORT ?? 3005);
+  const port = process.env.PORT ?? 3005;
+  await app.listen(port, '0.0.0.0');
 }
 void bootstrap();
