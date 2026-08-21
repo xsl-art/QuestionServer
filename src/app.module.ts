@@ -18,6 +18,7 @@ import { UploadModule } from './upload/upload.module';
     ConfigModule.forRoot(),
     MongooseModule.forRoot(
       process.env.MONGODB_URI ??
+        process.env.MONGO_URL ??
         `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`,
     ),
     UserModule,
